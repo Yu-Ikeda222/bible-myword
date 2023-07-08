@@ -2,14 +2,14 @@ import Database from "tauri-plugin-sql-api";
 import type { Bible } from "../types/Bible";
 
 let db: any = null;
-const load = Database.load("sqlite:database.db").then((instance) => {
+const load = Database.load("sqlite:bible.db").then((instance) => {
   db = instance;
   return db;
 });
 
 async function search(phrase: string): Promise<Array<Bible>> {
   await load;
-  const tables = await db.execute("select name from sqlite_master where type = 'table'")
+
   const resultList = await db.select(
     `select * from data where sentence like '%${phrase}%'`
   );
