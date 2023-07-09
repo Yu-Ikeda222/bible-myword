@@ -2,7 +2,7 @@ import Database from "tauri-plugin-sql-api";
 import type { Bible } from "../types/Bible";
 
 let db: any = null;
-const load = Database.load("sqlite:bible.db").then((instance) => {
+const load = Database.load("sqlite://../bible.db").then((instance) => {
   db = instance;
   return db;
 });
